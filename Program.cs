@@ -1,2 +1,6 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿//==========================================================
+// Student Number	: S10268975C
+// Student Name	: YE YINT AUNG
+// Partner Name	: Arjun Vivekananthan
+//==========================================================
+
