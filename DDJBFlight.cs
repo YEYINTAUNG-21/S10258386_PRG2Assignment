@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace S10268975C_PRG2Assignment
 {
-    internal class DDJBFlight
+    public class DDJBFlight: Flight
     {
     }
 }

@@ -9,11 +9,40 @@ namespace S10268975C_PRG2Assignment
     public class Terminal
     {
         public string TerminalName { get; set; }
-        public Dictionary<string, Airline> Airlines { get; set; }
-        public Dictionary<string, Flight> Flights { get; set; }
-        public Dictionary<string, BoardingGate> BoardingGates { get; set; }
-        public Dictionary<string, double> GateFees { get; set; }
+        public Dictionary<string, Airline> Airlines { get; set; } = new Dictionary<string, Airline>();
+        public Dictionary<string, Flight> Flights { get; set; } = new Dictionary<string, Flight>();
+        public Dictionary<string, BoardingGate> BoardingGates { get; set; } = new Dictionary<string, BoardingGate>();
+        public Dictionary<string, double> GateFees { get; set; } = new Dictionary<string, double>();
 
+        public Terminal() { }
+        public Terminal(string tn, Dictionary<string, Airline> a, Dictionary<string, Flight> f, Dictionary<string, BoardingGate> bg, Dictionary<string, double> gf)
+        {
+            TerminalName = tn;
+            Airlines = a;
+            Flights = f;
+            BoardingGates = bg;
+            GateFees = gf;
+        }
 
+        public bool AddAirline(Airline airline)
+        {
+            if (!Airlines.ContainsKey(airline.Code))
+            {
+                Airlines[airline.Code] = airline;
+                return true;
+            }
+            return false;
+        }
+        public bool AddBoardingGate(BoardingGate boardingGate)
+        {
+            if (!BoardingGates.ContainsKey(boardingGate.GateName))
+            {
+                BoardingGates[boardingGate.GateName] = boardingGate;
+            }
+        }
+        public bool GetAirlineFromFlight(Flight flight)
+        {
+
+        }
     }
 }
