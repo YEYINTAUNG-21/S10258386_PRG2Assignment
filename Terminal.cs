@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,9 +41,27 @@ namespace S10268975C_PRG2Assignment
                 BoardingGates[boardingGate.GateName] = boardingGate;
             }
         }
-        public bool GetAirlineFromFlight(Flight flight)
+        public Airline GetAirlineFromFlight(Flight flight)
         {
-
+            foreach (var airline in Airlines.Values)
+            {
+                if (airline.Flights.ContainsValue(flight))
+                {
+                    return airline;
+                }
+            }
+            return null;
+        }
+        public void PrintAirlineFees()
+        {
+            foreach (var airline in Airlines.Values)
+            {
+                Console.WriteLine($"Airline: {airline.Name}, Fees: {airline.CalcualteFees()}");
+            }
+        }
+        public override string ToString()
+        {
+            return $"Terminal Name: {TerminalName}, Airlines: {Airlines.Count}, Flights: {Flights.Count}, Boarding Gates: {BoardingGates.Count}, Gate Fees: {GateFees.Count}"
         }
     }
 }

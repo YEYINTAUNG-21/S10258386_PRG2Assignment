@@ -8,5 +8,6 @@ namespace S10268975C_PRG2Assignment
 {
     public class DDJBFlight: Flight
     {
+
     }
 }
