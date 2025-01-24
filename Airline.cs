@@ -26,6 +26,21 @@ namespace S10268975C_PRG2Assignment
             Flights.Add(f.FlightNumber, f);
             return true;
         }
-
+        public double CalculateFees()
+        {
+            double totalFees = 0;
+            foreach (var flight in Flights.Values)
+            {
+                totalFees += flight.CalculateFees();
+            }
+            return totalFees;
+        }
+        public bool RemoveFlight(Flight flight)
+        {
+            return Flights.Remove(flight.FlightNumber);
+        }
+        public override string ToString()
+        {
+            return $"Airline Name: {Name}, Airline Code: {Code}"
+        }
     }
-}

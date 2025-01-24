@@ -16,13 +16,9 @@ namespace S10268975C_PRG2Assignment
         public Dictionary<string, double> GateFees { get; set; } = new Dictionary<string, double>();
 
         public Terminal() { }
-        public Terminal(string tn, Dictionary<string, Airline> a, Dictionary<string, Flight> f, Dictionary<string, BoardingGate> bg, Dictionary<string, double> gf)
+        public Terminal(string tn)
         {
             TerminalName = tn;
-            Airlines = a;
-            Flights = f;
-            BoardingGates = bg;
-            GateFees = gf;
         }
 
         public bool AddAirline(Airline airline)
