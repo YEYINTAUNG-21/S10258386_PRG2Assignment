@@ -35,7 +35,9 @@ namespace S10268975C_PRG2Assignment
             if (!BoardingGates.ContainsKey(boardingGate.GateName))
             {
                 BoardingGates[boardingGate.GateName] = boardingGate;
+                return true;
             }
+            return false;
         }
         public Airline GetAirlineFromFlight(Flight flight)
         {
@@ -52,7 +54,7 @@ namespace S10268975C_PRG2Assignment
         {
             foreach (var airline in Airlines.Values)
             {
-                Console.WriteLine($"Airline: {airline.Name}, Fees: {airline.CalcualteFees()}");
+                Console.WriteLine($"Airline: {airline.Name}, Fees: {airline.CalculateFees()}");
             }
         }
         public override string ToString()
