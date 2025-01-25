@@ -6,7 +6,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace S10258386_PRG2Assignment
+namespace S10268975C_PRG2Assignment
 {
     public class NORMFlight(string origin, string destination, double totalfees) : Flight
     {
