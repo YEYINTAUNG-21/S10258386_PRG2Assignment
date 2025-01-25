@@ -41,6 +41,7 @@ namespace S10268975C_PRG2Assignment
         }
         public override string ToString()
         {
-            return $"Airline Name: {Name}, Airline Code: {Code}"
+            return $"Airline Name: {Name}, Airline Code: {Code}";
         }
     }
+}

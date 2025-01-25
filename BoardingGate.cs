@@ -23,7 +23,7 @@ namespace S10268975C_PRG2Assignment
         }
         public double CalculateFees()
         {
-            retrun 300 + Flight.CalculateFees();
+            return 300 + Flight.CalculateFees();
         }
         public override string ToString()
         {
