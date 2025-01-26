@@ -7,6 +7,46 @@
 using S10268975C_PRG2Assignment;
 
 Terminal terminal = new Terminal { TerminalName = "Terminal 5" };
+
+/* basic feature 1 */
+try
+{
+    Console.WriteLine("Loading airlines...");
+    using (StreamReader reader = new StreamReader("airlines.csv"))
+    {
+        reader.ReadLine();
+        string line;
+        while ((line = reader.ReadLine()) != null)
+        {
+            string[] parts = line.Split(',');
+            terminal.Airlines.Add(parts[0].Trim() = new Airline { Name = parts[0].Trim(), Code = parts[1].Trim() };)
+        }
+    }
+    Console.WriteLine($"{terminal.Airlines.Count} Airlines Loaded!");
+}
+catch(Exception ex)
+{ Console.WriteLine(ex.Message); }
+
+try
+{
+    Console.WriteLine("Loading boarding gates...");
+    using (StreamReader reader = new StreamReader("boardinggates.csv"))
+    {
+        reader.ReadLine();
+        string line;
+        while ((line = reader.ReadLine()) != null)
+        {
+            string[] parts = line.Split(',');
+            terminal.BoardingGates.Add(parts[0].Trim() = new Airline { GateName = parts[0].Trim(), SupportsCFFT = bool.Parse(parts[1].Trim()), SupportsDDJB = bool.Parse(parts[2].Trim()), SupportsLWTT  = bool.Parse(parts[3].Trim()) };)
+        }
+    }
+    Console.WriteLine($"{terminal.Airlines.Count} Airlines Loaded!");
+}
+catch (Exception ex)
+{ Console.WriteLine(ex.Message); }
+
+
+\/* basic feature 2 */
 try
 {
     Console.WriteLine("Loading flights...");

@@ -14,7 +14,7 @@ namespace S10268975C_PRG2Assignment
         public bool SupportsLWTT { get; set; }
         public Flight Flight { get; set; }
         public BoardingGate() { }
-        public BoardingGate(string gn, bool cfft, bool ddjb, bool lwtt)
+        public BoardingGate(string gn, bool ddjb, bool cfft, bool lwtt)
         {
             GateName = gn;
             SupportsCFFT = cfft;
