@@ -8,14 +8,13 @@ namespace S10268975C_PRG2Assignment
 {
     public class LWTTFlight: Flight
     {
-        public LWTTFlight(string fn, string o, string d, DateTime et, string s)
-        : base(fn, o, d, et, s)
+        public LWTTFlight(string fn, string o, string d, DateTime et)
+        : base(fn, o, d, et, "Schduled")
         {
             FlightNumber = fn;
             Origin = o;
             Destination = d;
             ExpectedTime = et;
-            Status = s;
         }
         double totalfees = 0;
         public override double CalculateFees()
