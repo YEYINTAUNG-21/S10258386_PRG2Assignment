@@ -8,17 +8,29 @@ using System.Threading.Tasks;
 
 namespace S10268975C_PRG2Assignment
 {
-    public class NORMFlight(string origin, string destination, double totalfees) : Flight
+    public class NORMFlight : Flight
     {
+        public NORMFlight(string fn, string o, string d, DateTime et, string s)
+        : base(fn, o, d, et, s)
+        {
+            {
+                FlightNumber = fn;
+                Origin = o;
+                Destination = d;
+                Status = s;
+            }
+            
+        }
+        double totalfees = 0;
         public override double CalculateFees()
         {
-           if (origin == "Singapore (SIN)")
+           if (Origin == "Singapore (SIN)")
             {
                 /* Adds both boarding gate base fee and Arriving flight fee */
                 totalfees += 800;
                 return totalfees;
             }
-           if (destination == "Singapore (SIN)")
+           if (Destination == "Singapore (SIN)")
             {
                 /* Adds both boarding gate base fee and Departing flight fee */
                 totalfees += 1100;

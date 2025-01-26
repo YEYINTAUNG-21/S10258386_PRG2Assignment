@@ -59,7 +59,7 @@ namespace S10268975C_PRG2Assignment
         }
         public override string ToString()
         {
-            return $"Terminal Name: {TerminalName}, Airlines: {Airlines.Count}, Flights: {Flights.Count}, Boarding Gates: {BoardingGates.Count}, Gate Fees: {GateFees.Count}"
+            return $"Terminal Name: {TerminalName}, Airlines: {Airlines.Count}, Flights: {Flights.Count}, Boarding Gates: {BoardingGates.Count}, Gate Fees: {GateFees.Count}";
         }
     }
 }

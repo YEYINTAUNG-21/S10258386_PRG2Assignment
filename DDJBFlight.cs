@@ -6,33 +6,37 @@ using System.Threading.Tasks;
 
 namespace S10268975C_PRG2Assignment
 {
-    public class DDJBFlight(string origin, string destination, double totalfees) : Flight
+    public class DDJBFlight: Flight
     {
-        /* Doesnt need a constructor as there is no need for it */
-        public double requestfee = 300;
+        public DDJBFlight(string fn, string o, string d, DateTime et, string s)
+        : base(fn, o, d, et, s)
+        {
+            FlightNumber = fn;
+            Origin = o;
+            Destination = d;
+            ExpectedTime = et;
+            Status = s;
+        }
+        double totalfees = 0;
         public override double CalculateFees()
         {
-            if (origin == "Singapore (SIN)")
+            if (Origin == "Singapore (SIN)")
             {
-                /* Adds both boarding gate base fee and Arriving flight fee */
-                totalfees += 800;
-                /* Adds the request fee for the special code */
-                totalfees += requestfee;
+                /* Adds all fees for arrival */
+                totalfees += 1100;
                 return totalfees;
             }
-            if (destination == "Singapore (SIN)")
+            if (Destination == "Singapore (SIN)")
             {
-                /* Adds both boarding gate base fee and Departing flight fee */
-                totalfees += 1100;
-                /* Adds the request fee for the special code */
-                totalfees += requestfee;
+                /* Adds all fees for departure*/
+                totalfees += 1400;
                 return totalfees;
             }
             return 0;
         }
         public override string ToString()
         {
-            return "Fees Added for DDJB flight Successfully";
+            return "Fees added for DDJB special code flight successfully";
         }
     }
 }
