@@ -5,6 +5,14 @@ using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 
+//==========================================================
+// Student Number : S10258386B
+// Student Name : Arjun Vivekananthan
+// Partner Name : Ye Yint Aung
+//==========================================================
+
+
+
 namespace S10258386_PRG2Assignment
 {
     public class Terminal

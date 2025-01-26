@@ -1,7 +1,7 @@
 ﻿//==========================================================
-// Student Number	: S10258386
+// Student Number	: S10258386B
 // Student Name	: Arjun Vivekananthan
-// Partner Name	: Arjun YE YINT AUNG
+// Partner Name	: Ye Yint Aung
 //==========================================================
 
 using S10258386_PRG2Assignment;
