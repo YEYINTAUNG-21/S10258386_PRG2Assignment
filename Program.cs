@@ -44,7 +44,7 @@ try
     Console.WriteLine($"{terminal.BoardingGates.Count} Boarding Gates Loaded!");
 
 
-\   /* basic feature 2 */
+   /* basic feature 2 */
 
     Console.WriteLine("Loading flights...");
     using (StreamReader sr = new StreamReader("flights.csv"))
@@ -100,4 +100,89 @@ catch (Exception ex)
     Console.WriteLine("6. Modify Flight Details");
     Console.WriteLine("7. Display Flight Schedule");
     Console.WriteLine("0. Exit");
+}
+
+void ListAllFlights()
+{
+    Console.WriteLine("{0, -14} {1, -19} {2, -19} {3, -17} {4, -27}",
+        "Flight Number", "Airline Name", "Origin", "Destination", "Expected Departure/Arrival Time");
+
+    foreach (var flight in terminal.Flights.Values)
+    {
+      
+    }
+}
+
+void ListBoardingGates()
+{
+
+}
+
+void AssignBoardingGate()
+{
+
+}
+
+void CreateFlight()
+{
+
+}
+
+void DisplayAirlineFlights()
+{
+
+}
+
+void ModifyFlightDetails()
+{
+
+}
+
+void DisplayFlightSchedule()
+{
+
+}
+
+while (true)
+{
+    ShowMenu();
+    Console.WriteLine("Please select your option: ");
+    string option = Console.ReadLine();
+    if (option == "0")
+    {
+        Console.WriteLine("Bye Bye!");
+        break;
+    }
+    else if (option == "1")
+    {
+        ListAllFlights();
+    }
+    else if (option == "2")
+    {
+        ListBoardingGates();
+    }
+    else if (option == "3")
+    {
+        AssignBoardingGate();
+    }
+    else if (option == "4")
+    {
+        CreateFlight();
+    }
+    else if (option == "5")
+    {
+        DisplayAirlineFlights();
+    }
+    else if (option == "6")
+    {
+        ModifyFlightDetails();
+    }
+    else if (option == "7")
+    {
+        DisplayFlightSchedule();
+    }
+    else
+    {
+        Console.WriteLine("Invalid Option!");
+    }
 }
