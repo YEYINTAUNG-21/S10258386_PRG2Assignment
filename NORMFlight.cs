@@ -1,4 +1,4 @@
-﻿using S10268975C_PRG2Assignment;
+﻿using S10258386_PRG2Assignment;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace S10268975C_PRG2Assignment
+namespace S10258386_PRG2Assignment
 {
     public class NORMFlight : Flight
     {

@@ -1,10 +1,10 @@
 ﻿//==========================================================
-// Student Number	: S10268975C
-// Student Name	: YE YINT AUNG
-// Partner Name	: Arjun Vivekananthan
+// Student Number	: S10258386
+// Student Name	: Arjun Vivekananthan
+// Partner Name	: Arjun YE YINT AUNG
 //==========================================================
 
-using S10268975C_PRG2Assignment;
+using S10258386_PRG2Assignment;
 
 Terminal terminal = new Terminal { TerminalName = "Terminal 5" };
 try

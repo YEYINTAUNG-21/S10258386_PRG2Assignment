@@ -5,7 +5,7 @@ using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace S10268975C_PRG2Assignment
+namespace S10258386_PRG2Assignment
 {
     public class Terminal
     {
