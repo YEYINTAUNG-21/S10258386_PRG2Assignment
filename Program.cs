@@ -7,10 +7,9 @@
 using S10268975C_PRG2Assignment;
 
 Terminal terminal = new Terminal { TerminalName = "Terminal 5" };
-
-/* basic feature 1 */
 try
 {
+    /* basic feature 1 */
     Console.WriteLine("Loading airlines...");
     using (StreamReader reader = new StreamReader("airlines.csv"))
     {
@@ -18,17 +17,14 @@ try
         string line;
         while ((line = reader.ReadLine()) != null)
         {
-            string[] parts = line.Split(',');
-            terminal.Airlines.Add(parts[0].Trim() = new Airline { Name = parts[0].Trim(), Code = parts[1].Trim() };)
+            var parts = line.Split(',');
+            string airlineName = parts[0].Trim();
+            string airlineCode = parts[1].Trim();
+            terminal.Airlines.Add(airlineCode, new Airline(airlineName, airlineCode));
         }
     }
     Console.WriteLine($"{terminal.Airlines.Count} Airlines Loaded!");
-}
-catch(Exception ex)
-{ Console.WriteLine(ex.Message); }
 
-try
-{
     Console.WriteLine("Loading boarding gates...");
     using (StreamReader reader = new StreamReader("boardinggates.csv"))
     {
@@ -36,19 +32,20 @@ try
         string line;
         while ((line = reader.ReadLine()) != null)
         {
-            string[] parts = line.Split(',');
-            terminal.BoardingGates.Add(parts[0].Trim() = new Airline { GateName = parts[0].Trim(), SupportsCFFT = bool.Parse(parts[1].Trim()), SupportsDDJB = bool.Parse(parts[2].Trim()), SupportsLWTT  = bool.Parse(parts[3].Trim()) };)
+            var parts = line.Split(',');
+            string boardingGate = parts[0].Trim();
+            bool supportsCFFT = parts[1].Trim() == "True";
+            bool supportsDDJB = parts[2].Trim() == "True";
+            bool supportsLWTT = parts[3].Trim() == "True";
+            BoardingGate gate = new BoardingGate(boardingGate, supportsCFFT, supportsDDJB, supportsLWTT);
+            terminal.BoardingGates.Add(boardingGate, gate);
         }
     }
-    Console.WriteLine($"{terminal.Airlines.Count} Airlines Loaded!");
-}
-catch (Exception ex)
-{ Console.WriteLine(ex.Message); }
+    Console.WriteLine($"{terminal.BoardingGates.Count} Boarding Gates Loaded!");
 
 
-\/* basic feature 2 */
-try
-{
+\   /* basic feature 2 */
+
     Console.WriteLine("Loading flights...");
     using (StreamReader sr = new StreamReader("flights.csv"))
     {
