@@ -17,7 +17,7 @@ namespace S10258386_PRG2Assignment
     public class LWTTFlight: Flight
     {
         public LWTTFlight(string fn, string o, string d, DateTime et)
-        : base(fn, o, d, et, "Schduled")
+        : base(fn, o, d, et, "Schduled", "Unassigned", "LWTT")
         {
             FlightNumber = fn;
             Origin = o;

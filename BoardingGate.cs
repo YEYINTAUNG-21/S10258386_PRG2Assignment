@@ -34,6 +34,22 @@ namespace S10258386_PRG2Assignment
         {
             return 300 + Flight.CalculateFees();
         }
+        public bool SupportsSpecialRequestCode(string src) // For Advanced feature a
+        {
+            if (src == "CFFT" && SupportsCFFT)
+            {
+                return true;
+            }
+            if (src == "DDJB" && SupportsDDJB)
+            {
+                return true;
+            }
+            if (src == "LWTT" && SupportsLWTT)
+            {
+                return true;
+            }
+            return false;
+        }
         public override string ToString()
         {
             return $"Gate Name: {GateName}";

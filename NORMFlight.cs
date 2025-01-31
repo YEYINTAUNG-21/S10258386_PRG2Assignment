@@ -18,7 +18,7 @@ namespace S10258386_PRG2Assignment
     public class NORMFlight : Flight
     {
         public NORMFlight(string fn, string o, string d, DateTime et)
-        : base(fn, o, d, et, "Schduled")
+        : base(fn, o, d, et, "Schduled", "Unassigned", "")
         {
             {
                 FlightNumber = fn;
