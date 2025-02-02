@@ -60,17 +60,17 @@ try
             string origin = data[1].Trim();
             string destination = data[2].Trim();
             DateTime expectedTime = DateTime.Parse(data[3].Trim());
-            string specialResquestCode = data[4].Trim();
+            string specialRequestCode = data[4].Trim();
             Flight flight;
-            if(specialResquestCode == "CFFT")
+            if(specialRequestCode == "CFFT")
             {
                 flight = new CFFTFlight(flightNumber, origin, destination, expectedTime);
             }
-            else if(specialResquestCode == "DDJB")
+            else if(specialRequestCode == "DDJB")
             {
                 flight = new DDJBFlight(flightNumber, origin, destination, expectedTime);
             }
-            else if(specialResquestCode == "LWTTF")
+            else if(specialRequestCode == "LWTTF")
             {
                 flight = new LWTTFlight(flightNumber, origin, destination, expectedTime);
             }
@@ -141,9 +141,28 @@ void ListAllFlights()
     }
 }
 
+/* Basic Feature 4 (ARJUN VIVEKANANTHAN) */
 void ListBoardingGates()
 {
-
+    try { 
+            Console.WriteLine("=============================================");
+            Console.WriteLine("List of Boarding Gates for Changi Airport Terminal 5");
+            Console.WriteLine("=============================================");
+            Console.WriteLine("Gate Name        DDJB                  CFFT                  LWTT");
+            foreach (var boardingGate in terminal.BoardingGates.Values)
+            {
+                string BoardingGateNo = boardingGate.GateName;
+                string DDJB = boardingGate.SupportsDDJB;
+                string CFFT = boardingGate.SupportsCFFT;
+                string LWTT = boardingGate.SupportsLWTT;
+            Console.WriteLine($"{BoardingGateNo}        {DDJB}                  {CFFT}                  {LWTT}");
+            }
+        }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex.Message);
+    }
+     
 }
 
 /* basic feature 5 (YE YINT AUNG) */
@@ -330,14 +349,155 @@ void CreateFlight()
         Console.WriteLine(ex.Message);
     }
 }
+/* basic feature 7 (ARJUN VIVEKANANTHAN)*/
 void DisplayAirlineFlights()
 {
+    try
+    {
+        Console.WriteLine("=============================================");
+        Console.WriteLine("List of Airlines for Changi Airport Terminal 5");
+        Console.WriteLine("=============================================");
+        Console.WriteLine("Airline Code   Airline Name");
+        foreach (var airline in terminal.Airlines.Values) 
+        { 
+            string airlineCode = airline.Code;
+            string airlineName = airline.Name;
+            Console.WriteLine($"{airlineCode}             {airlineName}");
 
+        } 
+        Console.WriteLine("Enter Airline Code:");
+        string response = Console.ReadLine();
+        foreach (var airline in terminal.Airlines.Values)
+        {           
+            if (airline == null)
+            {
+                Console.WriteLine("No airlines are assigned to that airline code");
+                break;
+            }
+            if (airline.Code != response.ToUpper())
+            {
+                continue;
+            }
+            string airlineName = airline.Name;
+            Console.WriteLine("=============================================");
+            Console.WriteLine($"List of Flights for {airline.Name}");
+            Console.WriteLine("=============================================");
+            Console.WriteLine("Flight Number   AirlineName       Origin              Destination         Expected Departure/Arrival Time        Special Request Code    Assigned Boarding Gate")
+            foreach (var flight in terminal.Flights.Values) 
+            {
+                string flightcode = flight.FlightNumber.Split(' ')[0];
+                if (flightcode == airline.Code)
+                {
+                    Console.WriteLine($"{flight.FlightNumber}           {airline.Name}      {flight.Origin}             {flight.Destination}        {flight.ExpectedTime}           {flight.specialRequestCode}     {flight.AssignedBoardingGate}");
+                }
+            }
+        }
+            
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex.Message);
+    }
 }
 
+/*basic feature 8 (ARJUN VIVEKANANTHAN) */
 void ModifyFlightDetails()
 {
+    try
+    {
+        Console.WriteLine("=============================================");
+        Console.WriteLine("List of Airlines for Changi Airport Terminal 5");
+        Console.WriteLine("=============================================");
+        Console.WriteLine("Airline Code   Airline Name");
+        foreach (var airline in terminal.Airlines.Values)
+        {
+            string airlineCode = airline.Code;
+            string airlineName = airline.Name;
+            Console.WriteLine($"{airlineCode}             {airlineName}");
 
+        }
+        Console.WriteLine("Enter Airline Code:");
+        string response = Console.ReadLine();
+        foreach (var airline in terminal.Airlines.Values)
+        {
+            if (airline == null)
+            {
+                Console.WriteLine("No airlines are assigned to that airline code");
+                break;
+            }
+            if (airline.Code != response.ToUpper())
+            {
+                continue;
+            }
+            string airlineName = airline.Name;
+            Console.WriteLine("=============================================");
+            Console.WriteLine($"List of Flights for {airline.Name}");
+            Console.WriteLine("=============================================");
+            Console.WriteLine("Flight Number   AirlineName       Origin              Destination         Expected Departure/Arrival Time        Special Request Code    Assigned Boarding Gate")
+            foreach (var flight in terminal.Flights.Values)
+            {
+                string flightcode = flight.FlightNumber.Split(' ')[0];
+                if (flightcode == airline.Code)
+                {
+                    Console.WriteLine($"{flight.FlightNumber}           {airlineName}      {flight.Origin}             {flight.Destination}        {flight.ExpectedTime}");
+                }
+            }
+            Console.WriteLine("Choose an existing flight to modify or delete:");
+            string result = Console.ReadLine();
+            foreach var flight in terminal.Flights.Values)
+            {
+                if (flight == null)
+                {
+                    Console.WriteLine("No flights were found!");
+                    break;   
+                }
+                if (flight == result.Trim().ToUpper())
+                {
+                    Console.WriteLine("1. Modify Flight");
+                    Console.WriteLine("2. Delete Flight");
+                    Console.WriteLine("Choose an option:");
+                    string result = Console.ReadLine()
+                    if (result.Trim() == "1")
+                    {
+                        Console.WriteLine("Enter new Origin:");
+                        string newOrigin = Console.ReadLine();
+                        Console.WriteLine("Enter new Destination:");
+                        string newDestination = Console.ReadLine();
+                        Console.WriteLine("Enter new Expected Departure/Arrival Time (dd/mm/yyyy hh:mm):");
+                        string newExpectedTime = Console.ReadLine();
+                        flight.Origin == newOrigin;
+                        flight.Destination == newDestination;
+                        flight.ExpectedTime = Convert.ToDateTime(newExpectedTime);
+                        Console.WriteLine("Flight updated!");
+                        Console.WriteLine($"Flight Number: {flight.FlightNumber}");
+                        Console.WriteLine($"Airline Name: {airline.Name}");
+                        Console.WriteLine($"Origin: {flight.Origin}");
+                        Console.WriteLine($"Destination: {flight.Destination}");
+                        Console.WriteLine($"Expected Departure/Arrival Time: {flight.ExpectedTime}");
+                        Console.WriteLine($"Status: {flight.Status}");
+                        Console.WriteLine($"Special Request Code: {flight.specialRequestCode}");
+                        if (flight.AssignedBoardingGate == null)
+                        {
+                            Console.WriteLine("Boarding Gate: Unassigned");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Boarding Gate: {flight.AssignedBoardingGate}")
+                        }
+                    }
+                }
+                else
+                {
+                    continue
+                }
+            }
+        }
+
+    }
+    catch(Exception ex)
+    {
+        Console.WriteLine(ex.Message());
+    }
 }
 
 /* basic feature 9 (YE YINT AUNG) */
@@ -467,7 +627,493 @@ void BulkAssignBoardingGates()
     {
         Console.WriteLine(ex.Message);
     }
-}    
+} 
+/* Advanced feature b (ARJUN VIVEKANANTHAN) */
+void DisplayAirlineTotalFee()
+{
+    try
+    {
+        double SQtotal = 0;
+        double MHtotal = 0;
+        double JLtotal = 0;
+        double CXtotal = 0;
+        double QFtotal = 0;
+        double TRtotal = 0;
+        double EKtotal = 0;
+        double BAtotal = 0;
+        double SQdiscount = 0;
+        double MHdiscount = 0;
+        double JLdiscount = 0;
+        double CXdiscount = 0;
+        double QFdiscount = 0;
+        double TRdiscount = 0;
+        double EKdiscount = 0;
+        double BAdiscount = 0;
+        int SQFlightCount = 0;
+        int MHFlightCount = 0;
+        int JLFlightCount = 0;
+        int CXFlightCount = 0;
+        int QFFlightCount = 0;
+        int TRFlightCount = 0;
+        int EKFlightCount = 0;
+        int BAFlightCount = 0;
+        foreach (var flight in terminal.Flights.Values)
+        {
+            if (flight.AssignedBoardingGate == null)
+            {
+                Console.WriteLine($"Flight {flight.FlightNumber} has not been assigned a Boarding Gate. Please assign one!");
+                continue
+            }
+            else
+            {
+                continue
+            }
+        }
+        foreach (var flight in terminal.Flights.Values)
+        {
+            if (flight.Origin == "Singapore (SIN)")
+            {
+                if (flight.FlightNumber.Split(" ")[0] == "SQ")
+                {
+                    SQtotal += 800;
+                    SQFlightCount++;
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "MH")
+                {
+                    MHtotal += 800;
+                    MHFlightCount++;
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "JL")
+                {
+                    JLtotal += 800;
+                    JLFlightCount++;
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "CX")
+                {
+                    CXtotal += 800;
+                    CXFlightCount++;
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "QF")
+                {
+                    QFtotal += 800;
+                    QFFlightCount++;
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "TR")
+                {
+                    TRtotal += 800;
+                    TRFlightCount++;
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "EK")
+                {
+                    EKtotal += 800;
+                    EKFlightCount++;
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "BA")
+                {
+                    BAtotal += 800;
+                    BAFlightCount++;
+                }
+            }
+            if (flight.Destination == "Singapore (SIN)")
+            {
+                if (flight.FlightNumber.Split(" ")[0] == "SQ")
+                {
+                    SQtotal += 800;
+                    SQFlightCount++;
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "MH")
+                {
+                    MHtotal += 800;
+                    MHFlightCount++;
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "JL")
+                {
+                    JLtotal += 800;
+                    JLFlightCount++;
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "CX")
+                {
+                    CXtotal += 800;
+                    CXFlightCount++;
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "QF")
+                {
+                    QFtotal += 800;
+                    QFFlightCount++;
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "TR")
+                {
+                    TRtotal += 800;
+                    TRFlightCount++;
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "EK")
+                {
+                    EKtotal += 800;
+                    EKFlightCount++;
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "BA")
+                {
+                    BAtotal += 800;
+                    BAFlightCount++;
+                }
+            }
+            if (flight.specialRequestCode != null)
+            {
+                if (flight.specialRequestCode == "LWTT")
+                {
+                    if (flight.FlightNumber.Split(" ")[0] == "SQ")
+                    {
+                        SQtotal += 500;
+                     
+                    }
+                    else if (flight.FlightNumber.Split(" ")[0] == "MH")
+                    {
+                        MHtotal += 500;
+                        
+                    }
+                    else if (flight.FlightNumber.Split(" ")[0] == "JL")
+                    {
+                        JLtotal += 500;
+                        
+                    }
+                    else if (flight.FlightNumber.Split(" ")[0] == "CX")
+                    {
+                        CXtotal += 500;
+                        
+                    }
+                    else if (flight.FlightNumber.Split(" ")[0] == "QF")
+                    {
+                        QFtotal += 500;
+                       
+                    }
+                    else if (flight.FlightNumber.Split(" ")[0] == "TR")
+                    {
+                        TRtotal += 500;
+                        
+                    }
+                    else if (flight.FlightNumber.Split(" ")[0] == "EK")
+                    {
+                        EKtotal += 500;
+                       
+                    }
+                    else if (flight.FlightNumber.Split(" ")[0] == "BA")
+                    {
+                        BAtotal += 500;
+                        
+                    }
+                }
+                else if (flight.specialRequestCode == "DDJB")
+                {
+                    if (flight.FlightNumber.Split(" ")[0] == "SQ")
+                    {
+                        SQtotal += 300;
+
+                    }
+                    else if (flight.FlightNumber.Split(" ")[0] == "MH")
+                    {
+                        MHtotal += 300;
+
+                    }
+                    else if (flight.FlightNumber.Split(" ")[0] == "JL")
+                    {
+                        JLtotal += 300;
+
+                    }
+                    else if (flight.FlightNumber.Split(" ")[0] == "CX")
+                    {
+                        CXtotal += 300;
+
+                    }
+                    else if (flight.FlightNumber.Split(" ")[0] == "QF")
+                    {
+                        QFtotal += 300;
+
+                    }
+                    else if (flight.FlightNumber.Split(" ")[0] == "TR")
+                    {
+                        TRtotal += 300;
+
+                    }
+                    else if (flight.FlightNumber.Split(" ")[0] == "EK")
+                    {
+                        EKtotal += 300;
+
+                    }
+                    else if (flight.FlightNumber.Split(" ")[0] == "BA")
+                    {
+                        BAtotal += 300;
+
+                    }
+                }
+                else if (flight.specialRequestCode == "CFFT")
+                {
+                    if (flight.FlightNumber.Split(" ")[0] == "SQ")
+                    {
+                        SQtotal += 150;
+
+                    }
+                    else if (flight.FlightNumber.Split(" ")[0] == "MH")
+                    {
+                        MHtotal += 150;
+
+                    }
+                    else if (flight.FlightNumber.Split(" ")[0] == "JL")
+                    {
+                        JLtotal += 150;
+
+                    }
+                    else if (flight.FlightNumber.Split(" ")[0] == "CX")
+                    {
+                        CXtotal += 150;
+
+                    }
+                    else if (flight.FlightNumber.Split(" ")[0] == "QF")
+                    {
+                        QFtotal += 150;
+
+                    }
+                    else if (flight.FlightNumber.Split(" ")[0] == "TR")
+                    {
+                        TRtotal += 150;
+
+                    }
+                    else if (flight.FlightNumber.Split(" ")[0] == "EK")
+                    {
+                        EKtotal += 150;
+
+                    }
+                    else if (flight.FlightNumber.Split(" ")[0] == "BA")
+                    {
+                        BAtotal += 150;
+
+                    }
+                }
+            }
+            bool sqhasexecuted = false;
+            bool mhhasexecuted = false;
+            bool jlhasexecuted = false;
+            bool cxhasexecuted = false;
+            bool qfhasexecuted = false;
+            bool trhasexecuted = false;
+            bool ekhasexecuted = false;
+            bool bahasexecuted = false;
+            if (SQFlightCount > 5 && sqhasexecuted = false)
+            {
+                SQdiscount += (SQtotal / 100 * 3);
+                sqhasexecuted = true;
+            }
+            else if (MHFlightCount > 5 && mhhasexecuted = false)
+            {
+                MHdiscount += (MHtotal / 100 * 3);
+                mhhasexecuted = true
+            }
+            else if (JLFlightCount > 5 && jlhasexecuted = false)
+            {
+                JLdiscount = (JLtotal / 100 * 3);
+                jlhasexecuted = true
+            }
+            else if (CXFlightCount > 5 && cxhasexecuted = false)
+            {
+                CXdiscount = (CXtotal / 100 * 3);
+                cxhasexecuted = true
+            }
+            else if (QFFlightCount > 5 && qfhasexecuted = false)
+            {
+                QFdiscount = (QFtotal / 100 * 3);
+                qfhasexecuted = true
+            }
+            else if (TRFlightCount > 5 && trhasexecuted = false)
+            {
+                TRdiscount = (TRtotal / 100 * 3);
+                trhasexecuted = true
+            }
+            else if (EKFlightCount > 5 && ekhasexecuted = false)
+            {
+                EKdiscount = (EKtotal / 100 * 3);
+                ekhasexecuted = true
+            }
+            else if (BAFlightCount > 5 && bahasexecuted = false)
+            {
+                BAdiscount = (BAtotal / 100 * 3);
+                bahasexecuted = true
+            }
+        }
+        SQtotal -= SQFlightCount % 3 * 350;
+        MHtotal -= MHFlightCount % 3 * 350;
+        JLtotal -= JLFlightCount % 3 * 350;
+        CXtotal -= CXFlightCount % 3 * 350;
+        QFtotal -= QFFlightCount % 3 * 350;
+        TRtotal -= TRFlightCount % 3 * 350;
+        EKtotal -= EKFlightCount % 3 * 350;
+        BAtotal -= BAFlightCount % 3 * 350;
+        foreach (var flight in terminal.Flights.Values)
+        {
+            string timetoconvert = Convert.ToString(flight.ExpectedTime()).Split(':')[0];
+            int timetocompare = Convert.ToInt32(timetoconvert);
+            if (timetocompare < 11 || timetocompare > 9)
+            {
+                if (flight.FlightNumber.Split(" ")[0] == "SQ")
+                {
+                    SQdiscount += 110;
+
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "MH")
+                {
+                    MHdiscount += 110;
+
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "JL")
+                {
+                    JLdiscount += 110;
+
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "CX")
+                {
+                    CXdiscount += 110;
+
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "QF")
+                {
+                    QFdiscount += 110;
+
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "TR")
+                {
+                    TRdiscount += 110;
+
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "EK")
+                {
+                    EKdiscount += 110;
+
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "BA")
+                {
+                    BAdiscount += 110;
+
+                }
+            }
+            if (flight.Origin == "Bangkok (BKK)" ||  flight.Origin == "Dubai (DXB)" || flight.Origin == "Tokyo (NRT)")
+            {
+                if (flight.FlightNumber.Split(" ")[0] == "SQ")
+                {
+                    SQdiscount += 25;
+
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "MH")
+                {
+                    MHdiscount += 25;
+
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "JL")
+                {
+                    JLdiscount += 25;
+
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "CX")
+                {
+                    CXdiscount += 25;
+
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "QF")
+                {
+                    QFdiscount += 25;
+
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "TR")
+                {
+                    TRdiscount += 25;
+
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "EK")
+                {
+                    EKdiscount += 25;
+
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "BA")
+                {
+                    BAdiscount += 25;
+
+                }
+            }
+            if (flight.specialRequestCode == null)
+            {
+                if (flight.FlightNumber.Split(" ")[0] == "SQ")
+                {
+                    SQdiscount += 50;
+
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "MH")
+                {
+                    MHdiscount += 50;
+
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "JL")
+                {
+                    JLdiscount += 50;
+
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "CX")
+                {
+                    CXdiscount += 50;
+
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "QF")
+                {
+                    QFdiscount += 50;
+
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "TR")
+                {
+                    TRdiscount += 50;
+
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "EK")
+                {
+                    EKdiscount += 50;
+
+                }
+                else if (flight.FlightNumber.Split(" ")[0] == "BA")
+                {
+                    BAdiscount += 50;
+
+                }
+            }
+        }
+        int sqfinal = SQtotal - SQdiscount;
+        int mhfinal = MHtotal - MHdiscount;
+        int jlfinal = JLtotal - JLdiscount;
+        int cxfinal = CXtotal - CXdiscount;
+        int qffinal = QFtotal - QFdiscount;
+        int trfinal = TRtotal - TRdiscount;
+        int ekfinal = EKtotal - EKdiscount;
+        int bafinal = BAtotal - BAdiscount;
+        int subfee = SQtotal + MHtotal + JLtotal + CXtotal + QFtotal + TRtotal + EKtotal + BAtotal;
+        int subdiscount = SQdiscount + MHdiscount + JLdiscount + CXdiscount + QFdiscount + TRdiscount + EKdiscount + BAdiscount;   
+        int subfinal = subfee - subdiscount
+
+        Console.WriteLine("         Airline Name                    Fees Charged         Discount            Final Amount");
+        Console.WriteLine($"        Singapore Airlines               ${SQtotal}          ${SQdiscount}       ${sqfinal}");
+        Console.WriteLine($"        Malaysia Airlines                ${MHtotal}          ${MHdiscount}       ${mhfinal}");
+        Console.WriteLine($"        Japan Airlines                   ${JLtotal}          ${JLdiscount}       ${jlfinal}");
+        Console.WriteLine($"        Cathay Pacific                   ${CXtotal}          ${CXdiscount}       ${cxfinal}");
+        Console.WriteLine($"        Qantas Airways                   ${QFtotal}          ${QFdiscount}       ${qffinal}");
+        Console.WriteLine($"        AirAsia                          ${TRtotal}          ${TRdiscount}       ${trfinal}");
+        Console.WriteLine($"        Emirates                         ${EKtotal}          ${EKdiscount}       ${ekfinal}");
+        Console.WriteLine($"        British Airways                  ${BAtotal}          ${BAdiscount}       ${bafinal}");
+        Console.WriteLine("===============================================================================================");
+        Console.WriteLine("                                            Statistics                                                 \n");
+        Console.WriteLine("         Airline Fee Subtotal            Airline Discount Subtotal             Final Fee Subtotal");
+        Console.WriteLine($"         ${subfee}                       ${subdiscount}                          ${subfinal}")   
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex.Message)
+    }
+}
+
+
+
 while (true)
 {
     try {

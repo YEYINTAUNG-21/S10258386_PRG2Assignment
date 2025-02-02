@@ -22,7 +22,7 @@ namespace S10258386_PRG2Assignment
         public DateTime ExpectedTime { get; set; }
         public string Status { get; set; } = "Schduled";
         public string AssignedBoardingGate { get; set; } = "Unassigned"; // For Advanced feature a
-        public string specialResquestCode { get; set; } = "None"; // For Advanced feature a
+        public string specialRequestCode { get; set; } = "None"; // For Advanced feature a
         public Flight() { }
         public Flight(string fn, string o, string d, DateTime et, string s, string abg, string src)
         {
