@@ -103,6 +103,7 @@ catch (Exception ex)
     Console.WriteLine("6. Modify Flight Details");
     Console.WriteLine("7. Display Flight Schedule");
     Console.WriteLine("8. Bulk Assign Boarding Gates");
+    Console.WriteLine("9. Display Airline Total Fees");
     Console.WriteLine("0. Exit");
 }
 
@@ -1186,6 +1187,10 @@ while (true)
         else if (option == "8")
         {
             BulkAssignBoardingGates();
+        }
+        else if (option == "9")
+        {
+            DisplayAirlineTotalFee();
         }
         else
         {
