@@ -388,7 +388,7 @@ void DisplayAirlineFlights()
             Console.WriteLine($"List of Flights for {airline.Name}");
             Console.WriteLine("=============================================");
             Console.WriteLine("Flight Number   AirlineName       Origin              Destination         Expected Departure/Arrival Time        Special Request Code    Assigned Boarding Gate");
-            foreach (var flight in terminal.Flights.Values)
+            foreach (var flight in terminal.Flights.Values) 
             {
                 string flightcode = flight.FlightNumber.Split(' ')[0];
                 if (flightcode == airline.Code)

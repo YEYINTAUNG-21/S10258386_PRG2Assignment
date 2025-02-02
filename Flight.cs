@@ -32,7 +32,7 @@ namespace S10258386_PRG2Assignment
             ExpectedTime = et;
             Status = "Schduled";
             AssignedBoardingGate = "Unassigned"; // For Advanced feature a
-            specialResquestCode = src; // For Advanced feature a
+            specialRequestCode = src; // For Advanced feature a
         }
         public abstract double CalculateFees();
         public int CompareTo(Flight other)
