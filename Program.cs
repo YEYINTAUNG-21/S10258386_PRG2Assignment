@@ -475,11 +475,11 @@ void ModifyFlightDetails()
                             string newOrigin = Console.ReadLine();
                             Console.WriteLine("Enter new Destination:");
                             string newDestination = Console.ReadLine();
-                            Console.WriteLine("Enter new Expected Departure/Arrival Time (dd/mm/yyyy hh:mm:ss):");
-                            string newExpectedTime = Console.ReadLine();
+                            Console.WriteLine("Enter new Expected Departure/Arrival Time (dd/mm/yyyy hh:mm):");
+                            var datetimeresult = DateTime.ParseExact(Console.ReadLine(), "M/d/yyyy hh:mm", CultureInfo.InvariantCulture )
                             flight.Origin = newOrigin;
                             flight.Destination = newDestination;
-                            flight.ExpectedTime = Convert.ToDateTime(newExpectedTime);
+                            flight.ExpectedTime = datetimeresult;
                         }
                         else if (nestedresult.Trim() == "2")
                         {
